@@ -1,0 +1,68 @@
+
+.tae-icon {
+    position: absolute;
+    cursor: pointer;
+    background: url('http://www.mattkenefick.com/_code/codearea/images/bg24.png') left center repeat-x;
+    height: 24px;
+    width: 24px;
+    border: 1px solid #c1c1c1;
+}
+
+.tae-icon span {
+    display: block;
+    width: 172px;
+    line-height: 24px;
+    font: 12px/26px Helvetica, Arial, sans-serif;
+    margin-left: 28px;
+    display: none;
+}
+
+.tae-icon i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 24px;
+    height: 24px;
+    background: url('http://www.mattkenefick.com/_code/codearea/images/icon24.png') left center no-repeat;
+    z-index: 10;
+}
+
+.tae-icon ul {
+    position: absolute;
+    left: -1px;
+    width: 200px;
+    background: url('http://www.mattkenefick.com/_code/codearea/images/bg24.png') left center repeat-x;
+    border-top: 1px solid #c1c1c1;
+    border-left: 1px solid #c1c1c1;
+    border-right: 1px solid #c1c1c1;
+    margin: 0;
+    padding: 0;
+    bottom: 24px;
+    display: none;
+    height: 130px;
+    overflow: auto;
+}
+
+.tae-icon ul li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    border-bottom: 1px solid #c1c1c1;
+    padding-left: 30px;
+    font: 12px/26px Helvetica, Arial, sans-serif;
+    height: 26px;
+    color: #555;
+    background: white;
+}
+
+.tae-icon ul li:hover {
+    background: #f26522;
+    color: white;
+}
+
+.tae-icon:hover ul,
+.tae-icon:hover span {
+    display: block;
+}

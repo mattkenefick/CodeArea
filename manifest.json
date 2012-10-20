@@ -1,0 +1,48 @@
+{
+  "name"             : "CodeArea",
+  "version"          : "1.0",
+  "manifest_version" : 2,
+  "description"      : "Convert any textarea into a code editor style.",
+  "icons": {
+    "16":  "images/icon16.png",
+    "48":  "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "browser_action"   : {
+    "default_icon"  : "images/icon.png",
+    "default_popup" : "settings.html"
+  },
+  "web_accessible_resources": [
+    "/script/_test.js"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*","https://*/*"],
+      "css": [
+          "style/main.css",
+          "editor/lib/codemirror.css",
+          "editor/theme/ambiance.css"
+      ],
+      "js": [
+          "script/jquery.js",
+
+          "editor/lib/codemirror.js",
+          "editor/lib/util/foldcode.js",
+
+          "editor/mode/clike/clike.js",
+          "editor/mode/css/css.js",
+          "editor/mode/htmlmixed/htmlmixed.js",
+          "editor/mode/javascript/javascript.js",
+          "editor/mode/less/less.js",
+          "editor/mode/mysql/mysql.js",
+          "editor/mode/php/php.js",
+          "editor/mode/python/python.js",
+          "editor/mode/ruby/ruby.js",
+          "editor/mode/shell/shell.js",
+          "editor/mode/xml/xml.js",
+
+          "script/main.js"
+        ]
+    }
+  ]
+}
