@@ -55,14 +55,16 @@ var CodeArea = new(function() {
     this.bind = function bind() {
         $('body').on('mouseenter', 'textarea', _onTextareaMouseEnter);
 
-        chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
-            console.log("Received theme: ", message.theme);
-            _theme = message.theme;
+        if (!window['CODEAREA_SCRIPT']) {
+            chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
+                console.log("Received theme: ", message.theme);
+                _theme = message.theme;
 
-            if (_editor) {
-                _editor.setOption("theme", _theme);
-            }
-        });
+                if (_editor) {
+                    _editor.setOption("theme", _theme);
+                }
+            });
+        }
     };
 
     /**
@@ -81,8 +83,8 @@ var CodeArea = new(function() {
      *   return icon
      */
     this.cssSetup = function(icon) {
-        icon.css('background-image', "url('" + chrome.extension.getURL('/images/bg24.png') + "')");
-        icon.find('i').css('background-image', "url('"  + chrome.extension.getURL('/images/icon24.png') + "')");
+        icon.css('background-image', "url('" + _getUrl('/images/bg24.png') + "')");
+        icon.find('i').css('background-image', "url('"  + _getUrl('/images/icon24.png') + "')");
         return icon;
     };
 
@@ -105,8 +107,6 @@ var CodeArea = new(function() {
         // don't create if exists
         if ($('caIcon' + id).size())
             return false;
-
-        $textarea.parent().css('position', 'relative');
 
         // build main object
         var icon = $('<div></div>')
@@ -142,7 +142,16 @@ var CodeArea = new(function() {
 
 
     // Event Handlers _______________________________________
-    //
+
+    function _getUrl(url) {
+        if (window['CODEAREA_SCRIPT']) {
+            return 'http://www.mattkenefick.com/_code/codearea' + url;
+        }
+        else {
+            return chrome.extension.getURL(url);
+        }
+    }
+
     function _onTextareaMouseEnter() {
         var icon,
             id = Math.floor(Math.random() * 1000);

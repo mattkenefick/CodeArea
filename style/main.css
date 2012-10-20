@@ -65,17 +65,17 @@
 }
 
 .ca-icon ul li:hover {
-    background: #f26522;
-    color: white;
+    background: #f26522 !important;
+    color: white !important;
 }
 
 .ca-icon:hover span {
-    opacity: 1;
+    opacity: 1 !important;
 }
 
 .ca-icon:hover ul {
-    height: 200px;
-    opacity: 1;
+    height: 200px !important;
+    opacity: 1 !important;
 }
 
 /** Overrides **/
