@@ -52,16 +52,16 @@
 }
 
 .ca-icon ul li {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 0 0 30px !important;
     list-style: none;
 
-    border-bottom: 1px solid #c1c1c1;
-    padding-left: 30px;
-    font: 12px/26px Helvetica, Arial, sans-serif;
-    height: 26px;
-    color: #555;
-    background: white;
+    border: 0 !important;
+    border-bottom: 1px solid #c1c1c1 !important;
+    font: 12px/26px Helvetica, Arial, sans-serif !important;
+    height: 26px !important;
+    color: #555 !important;
+    background: white !important;
 }
 
 .ca-icon ul li:hover {
