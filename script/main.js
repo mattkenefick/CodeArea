@@ -106,6 +106,8 @@ var CodeArea = new(function() {
         if ($('caIcon' + id).size())
             return false;
 
+        $textarea.parent().css('position', 'relative');
+
         // build main object
         var icon = $('<div></div>')
             .addClass("ca-icon")
@@ -122,8 +124,8 @@ var CodeArea = new(function() {
         // position object, we also use this for specific css targeting
         icon
             .css({
-                left   : $textarea.offset().left,
-                top    : $textarea.offset().top + $textarea.outerHeight() - icon.outerHeight(),
+                left   : parseInt($textarea.css('margin-left')) + $textarea.position().left,
+                top    : parseInt($textarea.css('margin-top')) + $textarea.position().top + $textarea.outerHeight() - icon.outerHeight(),
                 zIndex : 9999
             })
             .attr({
@@ -225,6 +227,12 @@ var CodeArea = new(function() {
 
         // remove icon
         $(this).parent().parent().remove();
+
+        // set value
+        $('.CodeMirror').css({
+            // height: $(el).outerHeight(),
+            width: $(el).outerWidth()
+        });
     };
 })();
 

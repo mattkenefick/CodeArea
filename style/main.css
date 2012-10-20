@@ -11,6 +11,7 @@
 }
 
 .ca-icon span {
+    color: #000;
     display: block;
     height: 24px;
     width: 100%;
@@ -81,4 +82,5 @@
 .CodeMirror-lines,
 .CodeMirror-gutter {
     line-height: 1.4 !important;
+    font-size: 13px !important;
 }

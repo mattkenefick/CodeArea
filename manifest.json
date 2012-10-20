@@ -1,6 +1,6 @@
 {
   "name"             : "CodeArea",
-  "version"          : "1.0",
+  "version"          : "1.0.2",
   "manifest_version" : 2,
   "description"      : "Convert any textarea into a code editor style.",
   "icons": {
