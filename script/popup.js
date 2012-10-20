@@ -1,8 +1,3 @@
-
-function onSelect() {
-    alert("Selected");
-}
-
 function sendMessage() {
     var theme = this.value;
 

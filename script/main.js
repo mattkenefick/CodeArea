@@ -224,7 +224,7 @@ var CodeArea = new(function() {
         _editor.setOption("theme", _theme);
 
         // remove icon
-        $(this).remove();
+        $(this).parent().parent().remove();
     };
 })();
 
