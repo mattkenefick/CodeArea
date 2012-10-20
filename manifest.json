@@ -8,12 +8,17 @@
     "48":  "images/icon48.png",
     "128": "images/icon128.png"
   },
+  "permissions": [
+    "tabs"
+  ],
   "browser_action"   : {
     "default_icon"  : "images/icon.png",
     "default_popup" : "settings.html"
   },
   "web_accessible_resources": [
-    "/script/_test.js"
+    "/images/bg24.png",
+    "/images/icon24.png",
+    "/images/poster.jpg"
   ],
   "content_scripts": [
     {
@@ -21,7 +26,20 @@
       "css": [
           "style/main.css",
           "editor/lib/codemirror.css",
-          "editor/theme/ambiance.css"
+
+          "editor/theme/ambiance.css",
+          "editor/theme/blackboard.css",
+          "editor/theme/cobalt.css",
+          "editor/theme/eclipse.css",
+          "editor/theme/elegant.css",
+          "editor/theme/erlang-dark.css",
+          "editor/theme/lesser-dark.css",
+          "editor/theme/monokai.css",
+          "editor/theme/neat.css",
+          "editor/theme/night.css",
+          "editor/theme/rubyblue.css",
+          "editor/theme/vibrant-ink.css",
+          "editor/theme/xq-dark.css"
       ],
       "js": [
           "script/jquery.js",

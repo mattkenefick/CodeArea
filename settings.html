@@ -1,3 +1,44 @@
-<div class="settings">
-    <img src="images/poster.jpg">
-</div>
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .settings {
+                position: relative;
+                width: 440px;
+                height: 280px;
+                background: url('images/poster.jpg') center center no-repeat;
+            }
+            .theme-wrapper {
+                position: absolute;
+                top: 200px;
+                left: 158px;
+                color: white;
+                font: 13px/18px Helvetica, Arial, sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="settings">
+            <div class="theme-wrapper">
+                <label>Select Theme: </label>
+                <select name="theme" id="theme">
+                    <option value="ambiance">Ambiance</option>
+                    <option value="blackboard">Blackboard</option>
+                    <option value="cobalt">Cobalt</option>
+                    <option value="eclipse">Eclipse</option>
+                    <option value="elegant">Elegant</option>
+                    <option value="erlang-dark">Erlang Dark</option>
+                    <option value="lesser-dark">Lesser Dark</option>
+                    <option value="monokai">Monokai</option>
+                    <option value="neat">Neat</option>
+                    <option value="night">Night</option>
+                    <option value="rubyblue">Ruby Blue</option>
+                    <option value="vibrant-ink">Vibrant Ink</option>
+                    <option value="xq-dark">XQ Dark</option>
+                </select>
+            </div>
+        </div>
+
+        <script src="script/popup.js"></script>
+    </body>
+</html>

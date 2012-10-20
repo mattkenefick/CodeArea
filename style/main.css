@@ -1,50 +1,56 @@
 
-.tae-icon {
+.ca-icon {
     position: absolute;
     cursor: pointer;
-    background: url('http://www.mattkenefick.com/_code/codearea/images/bg24.png') left center repeat-x;
+    background: #fff left center repeat-x;
     height: 24px;
     width: 24px;
     border: 1px solid #c1c1c1;
+    max-width: 200px;
+    -webkit-transition: width 0.3s ease-in-out;
 }
 
-.tae-icon span {
+.ca-icon span {
     display: block;
-    width: 172px;
-    line-height: 24px;
+    height: 24px;
+    width: 100%;
+    max-width: 172px;
     font: 12px/26px Helvetica, Arial, sans-serif;
+    opacity: 0;
+    overflow: hidden;
     margin-left: 28px;
-    display: none;
+    -webkit-transition: all 0.3s ease-in-out;
 }
 
-.tae-icon i {
+.ca-icon i {
     position: absolute;
     top: 0;
     left: 0;
     display: block;
     width: 24px;
     height: 24px;
-    background: url('http://www.mattkenefick.com/_code/codearea/images/icon24.png') left center no-repeat;
+    background: #fff left center no-repeat;
     z-index: 10;
 }
 
-.tae-icon ul {
+.ca-icon ul {
     position: absolute;
     left: -1px;
-    width: 200px;
-    background: url('http://www.mattkenefick.com/_code/codearea/images/bg24.png') left center repeat-x;
+    width: 100%;
     border-top: 1px solid #c1c1c1;
     border-left: 1px solid #c1c1c1;
     border-right: 1px solid #c1c1c1;
     margin: 0;
     padding: 0;
     bottom: 24px;
-    display: none;
-    height: 130px;
     overflow: auto;
+    height: 1px;
+    max-height: 135px;
+    opacity: 0;
+    -webkit-transition: height 0.5s ease-in-out, opacity 0.2s ease-in-out;
 }
 
-.tae-icon ul li {
+.ca-icon ul li {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -57,12 +63,16 @@
     background: white;
 }
 
-.tae-icon ul li:hover {
+.ca-icon ul li:hover {
     background: #f26522;
     color: white;
 }
 
-.tae-icon:hover ul,
-.tae-icon:hover span {
-    display: block;
+.ca-icon:hover span {
+    opacity: 1;
+}
+
+.ca-icon:hover ul {
+    height: 200px;
+    opacity: 1;
 }

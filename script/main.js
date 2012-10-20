@@ -1,54 +1,133 @@
-function addScript(scriptURL, onload) {
-   var script = document.createElement('script');
-   script.setAttribute("type", "application/javascript");
-   script.setAttribute("src", scriptURL);
-   if (onload) script.onload = onload;
-   document.documentElement.appendChild(script);
-}
+var CodeArea = new(function() {
 
-var TAE = new(function() {
+    // constants
+    var MAX_WIDTH = 200;
+    var MIN_WIDTH = 24;
 
     // private
     var _self = this;
+    var _editor;
+    var _lang = {
+        "clike"      : "C",
+        "css"        : "CSS",
+        "htmlmixed"  : "HTML",
+        "javascript" : "Javascript",
+        "less"       : "LESS",
+        "mysql"      : "MySQL",
+        "php"        : "PHP",
+        "python"     : "Python",
+        "ruby"       : "Ruby",
+        "shell"      : "Shell"
+    };
+    var _themes = {
+        'ambiance'    : "Ambiance",
+        'blackboard'  : "Blackboard",
+        'cobalt'      : "Cobalt",
+        'eclipse'     : "Eclipse",
+        'elegant'     : "Elegant",
+        'erlang-dark' : "Erlang Dark",
+        'lesser-dark' : "Lesser Dark",
+        'monokai'     : "Monokai",
+        'neat'        : "Neat",
+        'night'       : "Night",
+        'rubyblue'    : "Ruby Blue",
+        'vibrant-ink' : "Vibrant Ink",
+        'xq-dark'     : "XQ Dark"
+    };
+    var _theme = 'ambiance';
 
     // public
-    this.name = TAE;
+    this.name = CodeArea;
 
 
     // Public Methods ________________________________________
-    //
+
+    /**
+     * Function: bind
+     *
+     * Binds a live event to the body tag so we can cover all
+     * dynamic creation of textareas... including new forms.
+     *
+     * Returns:
+     *
+     *   return void
+     */
     this.bind = function bind() {
-        $('form').on('mouseenter', 'textarea', _onTextareaMouseEnter);
+        $('body').on('mouseenter', 'textarea', _onTextareaMouseEnter);
+
+        chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
+            console.log("Received theme: ", message.theme);
+            _theme = message.theme;
+
+            if (_editor) {
+                _editor.setOption("theme", _theme);
+            }
+        });
     };
 
-    this.createIcon = function createIcon($textarea, id) {
-        // var imgURL = chrome.extension.getURL("images/icon24.png");
+    /**
+     * Function: cssSetup
+     *
+     * Some files in Chrome Extensions aren't accessible with relative
+     * CSS urls for repeating and such. To solve this, we assign dynamically
+     * where we have access to chrom.extension.getURL
+     *
+     * Parameters:
+     *
+     *   icon - [jQuery element]
+     *
+     * Returns:
+     *
+     *   return icon
+     */
+    this.cssSetup = function(icon) {
+        icon.css('background-image', "url('" + chrome.extension.getURL('/images/bg24.png') + "')");
+        icon.find('i').css('background-image', "url('"  + chrome.extension.getURL('/images/icon24.png') + "')");
+        return icon;
+    };
 
+    /**
+     * Function: createIcon
+     *
+     * Main method to create icon each time a textarea is rolled over.
+     * The icon is later destroyed on roll out.
+     *
+     * Parameters:
+     *
+     *   $textarea - [jQuery element]
+     *   id        - [string]
+     *
+     * Returns:
+     *
+     *   return icon
+     */
+    this.createIcon = function createIcon($textarea, id) {
+        // don't create if exists
+        if ($('caIcon' + id).size())
+            return false;
+
+        // build main object
         var icon = $('<div></div>')
-            .addClass("tae-icon")
+            .addClass("ca-icon")
             .html([
-                "<i></i><span>Convert to CodeArea</span><ul>",
-                "<li id='clike'>C</li>",
-                "<li id='css'>CSS</li>",
-                "<li id='htmlmixed'>HTML</li>",
-                "<li id='javascript'>Javascript</li>",
-                "<li id='less'>LESS</li>",
-                "<li id='mysql'>MySQL</li>",
-                "<li id='php'>PHP</li>",
-                "<li id='python'>Python</li>",
-                "<li id='ruby'>Ruby</li>",
-                "<li id='shell'>Shell</li>",
-                "</ul>"].join(''))
+                "<i></i><span>Select Language</span>",
+                "<ul>",
+                $.map(_lang, function(v, k) {
+                    return "<li id='" + k + "'>" + v + "</li>";
+                }).join(''),
+                "</ul>"
+            ].join(''))
             .appendTo($textarea.parent());
+
+        // position object
         icon
             .css({
                 left: $textarea.offset().left,
                 top : $textarea.offset().top + $textarea.outerHeight() - icon.outerHeight()
-                // background: "url('" + imgURL + "') left bottom no-repeat"
             })
             .attr({
-                "data-tae": id,
-                "id": "taeIcon" + id
+                "data-ca" : id,
+                "id"      : "caIcon" + id
             })
             .on('mouseenter', _onIconEnter)
             .on('mouseleave', _onIconLeave)
@@ -62,41 +141,44 @@ var TAE = new(function() {
     // Event Handlers _______________________________________
     //
     function _onTextareaMouseEnter() {
-        var $this = $(this);
-        var id = Math.floor(Math.random() * 1000);
+        var icon,
+            id = Math.floor(Math.random() * 1000);
 
-        // corresponding button already exists
-        if ($this.data('tae') && $('#taeIcon' + $this.data('tae')).size()) {
-            return false;
-        }
+        // set ID
+        $(this).attr('data-ca', id);
+        icon  = _self.createIcon($(this), id);
+                _self.cssSetup(icon);
 
-        $this.attr('data-tae', id);
-        _self.createIcon($this, id);
-
-        // this may show problems later
-        $this.parent().bind('mouseleave', function(e) {
-            $('#taeIcon' + id).remove();
+        /**
+         * Attaching to the parent may cause problems or strangeness
+         * if there are multiple textareas in the same scope. However,
+         * we don't want to wrap elements and ruin the integrity of the
+         * DOM. TODO later.
+         */
+        $(this).parent().bind('mouseleave', function() {
+            $('#caIcon' + id).remove();
             $(this).unbind('mouseleave');
         });
     };
 
     function _onIconEnter() {
-        $(this).css('width', '200px');
+        $(this).css('width', MAX_WIDTH + 'px');
     };
 
     function _onIconLeave() {
-        $(this).css('width', '24px');
+        $(this).css('width', MIN_WIDTH + 'px');
     };
 
     function _onIconItemClick() {
-        var id = $(this).attr('id');
-        var options = {
-            lineNumbers: true,
-            tabSize: 4,
-            matchBrackets: true
-        };
+        var el,
+            id = $(this).attr('id'),
+            options = {
+                tabSize: 4,
+                lineNumbers: true,
+                matchBrackets: true
+            };
 
-        // fresh code
+        // fresh code mirror to prevent overlap in syntax highlighting
         create_codemirror();
 
         // load setup params
@@ -133,9 +215,12 @@ var TAE = new(function() {
         // load language
         window['load_' + id]();
 
-        var el = $('textarea[data-tae=' + $(this).parent().parent().data('tae') +']').get(0);
-        var editor = CodeMirror.fromTextArea(el, options);
-        editor.setOption("theme", "ambiance");
+        // yeah yeah its ugly. works fine cause we build syntax here.
+        el = $('textarea[data-ca=' + $(this).parent().parent().data('ca') +']').get(0);
+
+        // create the actual area
+        _editor = CodeMirror.fromTextArea(el, options);
+        _editor.setOption("theme", _theme);
 
         // remove icon
         $(this).remove();
@@ -143,5 +228,5 @@ var TAE = new(function() {
 })();
 
 // Start.
-TAE.bind();
-console.log("TextAreaEditor enabled.");
+CodeArea.bind();
+console.log("CodeArea enabled.");
