@@ -34,7 +34,7 @@ var CodeArea = new(function() {
         'vibrant-ink' : "Vibrant Ink",
         'xq-dark'     : "XQ Dark"
     };
-    var _theme = 'ambiance';
+    var _theme = 'monokai';
 
     // public
     this.name = CodeArea;
@@ -119,11 +119,12 @@ var CodeArea = new(function() {
             ].join(''))
             .appendTo($textarea.parent());
 
-        // position object
+        // position object, we also use this for specific css targeting
         icon
             .css({
-                left: $textarea.offset().left,
-                top : $textarea.offset().top + $textarea.outerHeight() - icon.outerHeight()
+                left   : $textarea.offset().left,
+                top    : $textarea.offset().top + $textarea.outerHeight() - icon.outerHeight(),
+                zIndex : 9999
             })
             .attr({
                 "data-ca" : id,

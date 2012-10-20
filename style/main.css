@@ -34,18 +34,18 @@
 }
 
 .ca-icon ul {
-    position: absolute;
-    left: -1px;
-    width: 100%;
-    border-top: 1px solid #c1c1c1;
-    border-left: 1px solid #c1c1c1;
-    border-right: 1px solid #c1c1c1;
-    margin: 0;
-    padding: 0;
-    bottom: 24px;
-    overflow: auto;
+    position: absolute !important;
+    left: -1px !important;
+    width: 100%  !important;
+    border-top: 1px solid #c1c1c1 !important;
+    border-left: 1px solid #c1c1c1 !important;
+    border-right: 1px solid #c1c1c1  !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    bottom: 24px !important;
+    overflow: auto !important;
     height: 1px;
-    max-height: 135px;
+    max-height: 135px !important;
     opacity: 0;
     -webkit-transition: height 0.5s ease-in-out, opacity 0.2s ease-in-out;
 }
@@ -75,4 +75,10 @@
 .ca-icon:hover ul {
     height: 200px;
     opacity: 1;
+}
+
+/** Overrides **/
+.CodeMirror-lines,
+.CodeMirror-gutter {
+    line-height: 1.4 !important;
 }
