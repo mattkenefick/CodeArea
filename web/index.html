@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>CodeArea</title>
+
+		<!-- styles -->
+		<link href="http://yui.yahooapis.com/2.8.1/build/reset/reset-min.css" rel="stylesheet">
+        <link href="style/main.css" rel="stylesheet">
+		<link href="style/slides.css" rel="stylesheet">
+
+        <!-- icon -->
+        <link rel="shortcut icon" href="images/icon16.png" />
+
+    </head>
+    <body>
+        <h1>CodeArea</h1>
+
+        <p>CodeArea is a Chrome Extension that gives you the ability to convert any Textarea into a code editor capable of syntax highlighting, themes, tabbing, etc. It&rsquo;s extra handy for working with snippets or sharing code on websites like StackOverflow or writing Gists. An icon appears in the lower left corner of the Textarea you&rsquo;re hovering that&rsquo;ll let you choose your syntax highlighting.</p>
+        <p>A CDN Javascript version will be available soon for site owners that want to implement this globally across their site.</p>
+        <p>Get the Chrome Extension <a href="https://chrome.google.com/webstore/detail/codearea/pniomcmehfkfhjnjmfpmnkogjgjchbbl">here</a> and come back for updates.</p>
+
+		<p><strong>Version:</strong> 1.0.3 // <strong>Code:</strong> <a href="http://www.twitter.com/mattkenefick">Matt Kenefick</a> // <strong>Design:</strong> <a href="http://www.twitter.com/danielmall">Dan Mall</a></p>
+
+        <div id="codearea">
+            <div id="slides">
+                <div class="slides_container">
+                    <div class="slide">
+                        <a href="#"><img src="images/screen-4.jpg" height="400"></a>
+                    </div>
+                    <div class="slide">
+                        <a href="#"><img src="images/screen-3.jpg" height="400"></a>
+                    </div>
+                    <div class="slide">
+                        <a href="#"><img src="images/screen-2.jpg" height="400"></a>
+                    </div>
+                    <div class="slide">
+                        <a href="#"><img src="images/screen-1.jpg" height="400"></a>
+                    </div>
+                </div>
+                <a href="#" class="prev"><img src="images/slides/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
+                <a href="#" class="next"><img src="images/slides/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
+            </div>
+            <img src="images/slides/example-frame.png" width="739" height="341" id="frame">
+        </div>
+
+        <hr>
+
+        <h2 id="faq">FAQ</h2>
+        <ol>
+            <li>
+                <p><strong>Q > </strong> I need syntax highlighting for this language, will it be supported?</p>
+                <p>Sure! I added a few pretty common languages in order to keep the list short and simple. If there&rsquo;s a more common demand for another language, I&rsquo;ll definitely add it. Just trying to keep the list as small as possible for now.</p>
+            </li>
+            <li>
+                <p><strong>Q > </strong> Any plans to make a plugin for Firefox?</p>
+                <p>If I have to.</p>
+            </li>
+            <li>
+                <p><strong>Q > </strong> Can we have X option / can the theme selection be persistent?</p>
+                <p>Absolutely. CodeArea was a quick and young project and will become more fully featured as time goes on. Your suggestions will help form that. <a href="http://www.twitter.com/mattkenefick/">Tweet at me</a> with any ideas or bugs!</p>
+            </li>
+        </ol>
+
+		<!-- Type Kit -->
+        <script type="text/javascript" src="http://use.typekit.com/ojm5shs.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+        <!-- Scripts -->
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+        <script src="script/slides.min.js"></script>
+
+        <!-- Slides -->
+        <script>
+        $(function(){
+            $('#codearea').slides({
+                preload: true,
+                play: 5000,
+                pause: 2500,
+                hoverPause: true
+            });
+        });
+    </script>
+    </body>
+</html>

@@ -1,0 +1,60 @@
+
+body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    word-wrap:  break-word;
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+
+    font-family:        "gesta-1", "gesta-2", Helvetica, Arial;
+    line-height:        1.5;
+}
+
+body { padding: 25px 50px; }
+
+h1 {
+    background: url('../images/icon48.png') left center no-repeat;
+	font: 300 28px/50px "droid-serif-1", Georgia, "Times New Roman";
+    margin: 40px 0;
+    padding-left: 65px;
+    height: 50px;
+}
+
+h2 {
+    font: 300 20px/30px "droid-serif-1", Georgia, "Times New Roman";
+    text-align: center;
+    margin: 30px;
+}
+
+hr {
+    margin: 20px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+
+strong { font-weight: 700; }
+
+p {
+    margin-bottom: 15px;
+    font-weight: 200;
+}
+
+a { color: #f1672c; }
+
+li { padding-bottom: 20px; }
+
+.typekit-badge { display: none !important; }
