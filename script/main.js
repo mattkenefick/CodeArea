@@ -8,7 +8,7 @@ var CodeArea = new(function() {
     var _self = this;
     var _editor;
     var _lang = {
-        "clike"      : "C",
+        "clike"      : "C / C++",
         "css"        : "CSS",
         "htmlmixed"  : "HTML",
         "javascript" : "Javascript",
